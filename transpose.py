@@ -1,8 +1,9 @@
 W = 7
 #msg = 'ABCDEF0123....'
-msg = '.DC01.B.AF.2E3' # 100 time
+msg = 'ABCDEF0123' # 100 time
 method = "ENC"
 perm = [4, 5, 6, 3, 2, 0, 1] # hard coding the key for test purpose
+permk = range(W) # placeholder
 
 while len(msg) % (2*W):
     msg += "."
@@ -14,12 +15,12 @@ def encrypt(target):
     target = target[0::2] + target[1::2]
     target = target[1:] + target[:1]
     res = ""
-    
+    '''
     for j in xrange(0, len(target), W):
       for k in xrange(W):
         res += target[j:j+W][perm[k]]
     target = res
-    
+    '''
     print 'Transposed for '+str(i+1)+ '  time '+target
   
   print('--------------------------------------')
