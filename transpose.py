@@ -1,7 +1,7 @@
 W = 7
 #msg = 'ABCDEF0123....'
-msg = 'DF13..CE02..AB' 
-method = "DEC"
+msg = 'ABCDEF0123' 
+method = "ENC"
 perm = [4, 5, 6, 3, 2, 0, 1] # hard coding the key for test purpose
 permk = range(W) # placeholder
 
@@ -10,17 +10,19 @@ while len(msg) % (2*W):
     
 
 def encrypt(target):
-  target = target[1:] + target[:1]
-  target = target[0::2] + target[1::2]
-  target = target[1:] + target[:1]
-  res = ""
-  '''
-  for j in xrange(0, len(target), W):
-    for k in xrange(W):
-      res += target[j:j+W][perm[k]]
-  target = res
-  print 'Transposed for '+str(i+1)+ '  time '+target
-  '''
+  
+  for step in xrange(100):
+    target = target[1:] + target[:1]
+    target = target[0::2] + target[1::2]
+    target = target[1:] + target[:1]
+    res = ""
+    '''
+    for j in xrange(0, len(target), W):
+      for k in xrange(W):
+        res += target[j:j+W][perm[k]]
+    target = res
+    print 'Transposed for '+str(i+1)+ '  time '+target
+    '''
   
   
   print('--------------------------------------')
@@ -35,14 +37,15 @@ decrypt that
 
 def decrypt(target):
   lh = len(target)/2
-  subT = ""
-
-  target = target[-1]+target[:-1]
   
-  for i in xrange(lh):
-    subT += target[i::lh]
+  for step in xrange(100):
+    subT = ""
+    target = target[-1]+target[:-1]
     
-  target = subT[-1]+subT[:-1]
+    for i in xrange(lh):
+      subT += target[i::lh]
+      
+    target = subT[-1]+subT[:-1]
   
   print('Decrypted  : '+target)
 
