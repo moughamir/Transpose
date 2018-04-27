@@ -16,17 +16,17 @@ def encrypt(target):
     target = target[0::2] + target[1::2]
     target = target[1:] + target[:1]
     res = ""
-    '''
     for j in xrange(0, len(target), W):
       for k in xrange(W):
         res += target[j:j+W][perm[k]]
     target = res
-    print 'Transposed for '+str(i+1)+ '  time '+target
-    '''
+    #print 'Transposed for '+str(i+1)+ '  time '+target
+    
   
   
   print('--------------------------------------')
   print('Encrypted  : '+target)
+  print('Key        : '+str(perm))
   print('--------------------------------------')
 
 
