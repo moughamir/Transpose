@@ -1,7 +1,7 @@
 W = 7
 #msg = 'ABCDEF0123....'
-msg = 'ABCDEF0123' # 100 time
-method = "ENC"
+msg = 'DF13..CE02..AB' 
+method = "DEC"
 perm = [4, 5, 6, 3, 2, 0, 1] # hard coding the key for test purpose
 permk = range(W) # placeholder
 
@@ -10,18 +10,18 @@ while len(msg) % (2*W):
     
 
 def encrypt(target):
-  for i in xrange(100):
-    target = target[1:] + target[:1]
-    target = target[0::2] + target[1::2]
-    target = target[1:] + target[:1]
-    res = ""
-
-    for j in xrange(0, len(target), W):
-      for k in xrange(W):
-        res += target[j:j+W][perm[k]]
-    target = res
-
-    print 'Transposed for '+str(i+1)+ '  time '+target
+  target = target[1:] + target[:1]
+  target = target[0::2] + target[1::2]
+  target = target[1:] + target[:1]
+  res = ""
+  '''
+  for j in xrange(0, len(target), W):
+    for k in xrange(W):
+      res += target[j:j+W][perm[k]]
+  target = res
+  print 'Transposed for '+str(i+1)+ '  time '+target
+  '''
+  
   
   print('--------------------------------------')
   print('Encrypted  : '+target)
@@ -36,6 +36,7 @@ decrypt that
 def decrypt(target):
   lh = len(target)/2
   subT = ""
+
   target = target[-1]+target[:-1]
   
   for i in xrange(lh):
